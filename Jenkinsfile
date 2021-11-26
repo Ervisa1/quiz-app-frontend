@@ -28,9 +28,14 @@ pipeline {
                         sh 'envsubst < ${WORKSPACE}/frontend.yaml | kubectl apply -f -'
                   }
             }
-            stage('Deploy ingress to Cluster') {
+            stage('Deploy ingress-backend-frontend to Cluster') {
                   steps {
                         sh 'envsubst < ${WORKSPACE}/ingress.yaml | kubectl apply -f -'
+                  }
+            }  
+            stage('Configure ingress-controller to Cluster') {
+                  steps {
+                        sh 'envsubst < ${WORKSPACE}/ingress.config.yaml | kubectl apply -f -'
                   }
             }            
       }
