@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: quiz-frontend
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app: quiz-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: quiz-frontend
     spec:
       containers:
-        - name: frontend
-          image: ervisa/frontend-new:7
+        - name: quiz-frontend
+          image: ${dockerhubname}/${Service}:${BUILD_ID}
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -21,14 +21,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: quiz-frontend
 spec:
   ports:
     - port: 80
       protocol: TCP
       targetPort: 80
   selector:
-    app: frontend
+    app: quiz-frontend
   type: ClusterIP
 status:
   loadBalancer: {}
