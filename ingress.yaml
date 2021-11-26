@@ -13,9 +13,9 @@ spec:
         paths:
           - path: /?(.*)
             backend:
-              serviceName: "frontend"
+              serviceName: "quiz-frontend"
               servicePort: 80
           - path: /api/quiz/select?(.*)
             backend:
-              serviceName: "backend"
+              serviceName: "quiz-backend"
               servicePort: 8080
